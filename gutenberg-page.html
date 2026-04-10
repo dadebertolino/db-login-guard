@@ -1,0 +1,317 @@
+<!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"2em","right":"2em","bottom":"2em","left":"2em"}},"border":{"radius":"12px"},"color":{"background":"#2271b1"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignwide has-background" style="background-color:#2271b1;border-radius:12px;padding-top:2em;padding-right:2em;padding-bottom:2em;padding-left:2em">
+
+<!-- wp:heading {"level":1,"style":{"color":{"text":"#ffffff"}}} -->
+<h1 class="wp-block-heading has-text-color" style="color:#ffffff">DB Login Guard</h1>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"style":{"color":{"text":"#ffffff"}}} -->
+<p class="has-text-color" style="color:#ffffff"><strong>Protezione brute force per WordPress. Registra, blocca, notifica. Niente servizi cloud, niente abbonamenti, niente tracciamento.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons -->
+<div class="wp-block-buttons">
+<!-- wp:button {"backgroundColor":"white","style":{"border":{"radius":"8px"}}} -->
+<div class="wp-block-button"><a class="wp-block-button__link has-white-background-color has-background wp-element-button" href="https://github.com/dadebertolino/db-login-guard/releases/download/v1.1.0/db-login-guard-1.1.0.zip" style="border-radius:8px">📥 Download v1.1.0</a></div>
+<!-- /wp:button -->
+<!-- wp:button {"className":"is-style-outline","style":{"border":{"radius":"8px"},"color":{"text":"#ffffff"}}} -->
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="https://github.com/dadebertolino/db-login-guard" style="border-radius:8px;color:#ffffff">GitHub</a></div>
+<!-- /wp:button -->
+</div>
+<!-- /wp:buttons -->
+
+</div>
+<!-- /wp:group -->
+
+<!-- wp:paragraph -->
+<p><strong>Versione:</strong> 1.1.0 · <strong>Autore:</strong> <a href="https://www.davidebertolino.it">Davide Bertolino</a> · <strong>Compatibilità:</strong> WordPress 5.8+ · PHP 7.4+ · <strong>Licenza:</strong> GPL v2</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>DB Login Guard monitora tutti i tentativi di accesso al tuo sito WordPress. Se qualcuno prova troppe password sbagliate, il suo IP viene bloccato automaticamente. Ogni tentativo viene registrato in un log con IP, username, user-agent e timestamp. Ricevi una notifica via email quando scatta un blocco. <strong>Nessun servizio esterno, nessun database cloud, tutto resta sul tuo server.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:separator {"className":"is-style-wide"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-wide"/>
+<!-- /wp:separator -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Caratteristiche</h2>
+<!-- /wp:heading -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">🛡️ Blocco automatico</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Dopo un numero configurabile di tentativi falliti dallo stesso IP (default: 5 in 10 minuti), l'IP viene bloccato temporaneamente. La durata del blocco è configurabile (default: 30 minuti). Il blocco interviene <em>prima</em> che WordPress provi le credenziali — nessun carico inutile sul database.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">📋 Log completo</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Ogni tentativo di login viene registrato con tutti i dettagli:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list">
+<li>Indirizzo IP (con supporto Cloudflare, proxy, X-Forwarded-For)</li>
+<li>Username tentato</li>
+<li>User-Agent del browser</li>
+<li>Data e ora</li>
+<li>Stato: fallito, riuscito o bloccato</li>
+</ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Log consultabile dall'admin con filtri per stato, IP e username. Paginazione e export CSV inclusi.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">📊 Dashboard</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Panoramica immediata della situazione: tentativi falliti nelle ultime 24 ore, IP unici attaccanti, numero di IP attualmente bloccati, username più bersagliato. Il tuo IP è mostrato con indicazione se è in whitelist o meno.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">🔒 Gestione IP bloccati</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Tabella con tutti gli IP bloccati: quando sono stati bloccati, quando scade il blocco, quanti tentativi avevano fatto. Sblocco manuale con un click. Blocco manuale di qualsiasi IP direttamente dalla tabella.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">✅ Whitelist IP</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Lista di IP che non vengono mai bloccati — per non chiuderti fuori dal tuo stesso sito. Supporta la notazione CIDR (es: <code>192.168.1.0/24</code>) per coprire intere sottoreti.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">📧 Notifiche email</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Quando un IP viene bloccato, ricevi un'email con tutti i dettagli: IP, username tentato, numero di tentativi, durata del blocco. Rate limiting integrato: massimo un'email ogni 10 minuti per lo stesso IP, per non intasarti la casella durante un attacco massivo.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">🧹 Auto-pulizia</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>WP Cron elimina automaticamente i record del log più vecchi di N giorni (default: 30). I blocchi scaduti vengono rimossi nella stessa operazione. Il database resta leggero senza intervento manuale.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">🆕 🚫 Disabilita XML-RPC</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>XML-RPC è un protocollo legacy che i bot sfruttano per brute force via <code>system.multicall</code> — consente centinaia di tentativi di login in una singola richiesta HTTP. Con un checkbox lo disabiliti completamente: blocco 403 su xmlrpc.php, rimozione dell'header X-Pingback e dei link RSD/WLW dal codice sorgente. Se non usi l'app WordPress desktop vecchia, disattivalo senza pensarci.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">🆕 🔐 Proteggi REST API /users</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Per default WordPress espone la lista degli username del sito su <code>/wp-json/wp/v2/users</code> — chiunque può leggerla senza autenticarsi. Questa opzione blocca l'endpoint per i visitatori anonimi con errore 403. Gli utenti loggati e Gutenberg continuano a funzionare normalmente, perché la restrizione si applica solo alle richieste non autenticate.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:separator {"className":"is-style-wide"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-wide"/>
+<!-- /wp:separator -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Quanto costa?</h2>
+<!-- /wp:heading -->
+
+<!-- wp:table {"className":"is-style-stripes"} -->
+<figure class="wp-block-table is-style-stripes"><table><thead><tr><th>Funzionalità</th><th>Inclusa</th></tr></thead><tbody><tr><td>Blocco automatico brute force</td><td>✅ Sì</td></tr><tr><td>Log tentativi di accesso</td><td>✅ Sì</td></tr><tr><td>Dashboard statistiche</td><td>✅ Sì</td></tr><tr><td>Whitelist IP / CIDR</td><td>✅ Sì</td></tr><tr><td>Notifiche email</td><td>✅ Sì</td></tr><tr><td>Export CSV</td><td>✅ Sì</td></tr><tr><td>Auto-pulizia log</td><td>✅ Sì</td></tr><tr><td>Disabilita XML-RPC</td><td>✅ Sì</td></tr><tr><td>Proteggi REST API /users</td><td>✅ Sì</td></tr><tr><td>Versione "Pro"</td><td>❌ Non esiste</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:paragraph -->
+<p>Zero euro. Tutto incluso. Nessuna funzionalità nascosta dietro un paywall.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:separator {"className":"is-style-wide"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-wide"/>
+<!-- /wp:separator -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Installazione</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list">
+<li>Scarica il file ZIP dalla <a href="https://github.com/dadebertolino/db-login-guard/releases">release GitHub</a></li>
+<li>WordPress Admin → Plugin → Aggiungi nuovo → Carica plugin → scegli il file ZIP</li>
+<li>Attiva il plugin</li>
+<li>Vai su <strong>Strumenti → Login Guard</strong></li>
+</ol>
+<!-- /wp:list -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Primo utilizzo</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Il plugin è attivo subito con valori ragionevoli: 5 tentativi in 10 minuti → blocco 30 minuti. L'unica cosa consigliata è aggiungere il tuo IP alla whitelist per non rischiare di bloccarti fuori durante i test.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:separator {"className":"is-style-wide"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-wide"/>
+<!-- /wp:separator -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Pannello admin</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Il pannello si trova in <strong>Strumenti → Login Guard</strong> ed è organizzato in 4 tab:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:table {"className":"is-style-stripes"} -->
+<figure class="wp-block-table is-style-stripes"><table><thead><tr><th>Tab</th><th>Contenuto</th></tr></thead><tbody><tr><td>Dashboard</td><td>Statistiche 24h, stato protezione, IP attuale, configurazione attiva</td></tr><tr><td>Log accessi</td><td>Tabella con filtri (stato, IP, username), paginazione, svuota log, export CSV</td></tr><tr><td>IP bloccati</td><td>Lista IP bloccati con sblocco manuale, blocco manuale per IP</td></tr><tr><td>Impostazioni</td><td>Tentativi max, finestra temporale, durata blocco, whitelist, log, notifiche, hardening</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:separator {"className":"is-style-wide"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-wide"/>
+<!-- /wp:separator -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Struttura cartelle</h2>
+<!-- /wp:heading -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>db-login-guard/
+├── db-login-guard.php         # File principale + singleton
+├── uninstall.php              # Pulizia completa
+├── README.md
+├── LICENSE
+├── assets/
+│   ├── css/
+│   │   └── admin.css          # Stili pagina admin
+│   └── js/
+│       └── admin.js           # AJAX clear/export
+└── inc/
+    ├── class-database.php     # Tabelle, query, CRUD
+    ├── class-guard.php        # Logica protezione + hook login
+    ├── class-admin.php        # Pagina admin + AJAX
+    ├── class-cron.php         # Auto-pulizia giornaliera
+    └── class-hardening.php    # XML-RPC disable + REST API restriction</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:separator {"className":"is-style-wide"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-wide"/>
+<!-- /wp:separator -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Note tecniche</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list">
+<li>Due tabelle custom: <code>{prefix}dblg_login_log</code> e <code>{prefix}dblg_blocked_ips</code></li>
+<li>Il blocco interviene sull'hook <code>authenticate</code> a priorità 1 — prima che WordPress tocchi il database</li>
+<li>Whitelist supporta notazione CIDR (es: <code>10.0.0.0/8</code>)</li>
+<li>Rate limiting notifiche: max 1 email ogni 10 minuti per IP (via transient)</li>
+<li>L'utente vede nella pagina di login quanti tentativi gli restano prima del blocco</li>
+<li>L'uninstall rimuove tutto: tabelle, opzioni, transient, cron</li>
+<li>Nessun script caricato nel frontend del sito</li>
+<li>XML-RPC: quando disabilitato, blocca a livello di <code>init</code> con 403 e logga il tentativo</li>
+<li>REST API: blocca solo <code>/wp/v2/users</code> per anonimi — tutti gli altri endpoint restano accessibili</li>
+</ul>
+<!-- /wp:list -->
+
+<!-- wp:separator {"className":"is-style-wide"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-wide"/>
+<!-- /wp:separator -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Changelog</h2>
+<!-- /wp:heading -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">1.1.0</h3>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list">
+<li>🆕 Opzione per disabilitare XML-RPC completamente (blocco 403 + rimozione header/link)</li>
+<li>🆕 Opzione per bloccare REST API /users per utenti anonimi</li>
+<li>🆕 Sezione Hardening nella dashboard con stato XML-RPC e REST API</li>
+<li>🆕 I tentativi su xmlrpc.php e REST /users vengono registrati nel log</li>
+</ul>
+<!-- /wp:list -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">1.0.0</h3>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list">
+<li>Release iniziale</li>
+<li>Blocco automatico IP dopo N tentativi falliti</li>
+<li>Log accessi con filtri, paginazione, export CSV</li>
+<li>Dashboard con statistiche 24h</li>
+<li>Gestione IP bloccati (blocco/sblocco manuale)</li>
+<li>Whitelist IP con supporto CIDR</li>
+<li>Notifiche email con rate limiting</li>
+<li>Auto-pulizia via WP Cron</li>
+<li>Avviso tentativi rimanenti nella pagina di login</li>
+</ul>
+<!-- /wp:list -->
+
+<!-- wp:separator {"className":"is-style-wide"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-wide"/>
+<!-- /wp:separator -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Licenza</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>GPL v2 or later — sei libero di utilizzare, modificare e distribuire questo plugin.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:separator {"className":"is-style-wide"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-wide"/>
+<!-- /wp:separator -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Autore</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><strong>Davide Bertolino</strong><br>🌐 <a href="https://www.davidebertolino.it">davidebertolino.it</a><br>📧 info@davidebertolino.it</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:separator {"className":"is-style-wide"} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-wide"/>
+<!-- /wp:separator -->
+
+<!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"2em","right":"2em","bottom":"2em","left":"2em"}},"border":{"radius":"12px"},"color":{"background":"#1d6e3f"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignwide has-background" style="background-color:#1d6e3f;border-radius:12px;padding-top:2em;padding-right:2em;padding-bottom:2em;padding-left:2em">
+
+<!-- wp:paragraph {"style":{"color":{"text":"#ffffff"}},"fontSize":"large"} -->
+<p class="has-text-color has-large-font-size" style="color:#ffffff">🚫 Nessuna registrazione. Nessun reminder. Nessun trucco.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"style":{"color":{"text":"#ffffffcc"}}} -->
+<p class="has-text-color" style="color:#ffffffcc">Scarica, installa, usa. Niente account, niente popup, niente "passa a Pro", niente telemetria. Il codice è tuo, la licenza è GPL v2, le funzionalità sono tutte incluse. Fine.</p>
+<!-- /wp:paragraph -->
+
+</div>
+<!-- /wp:group -->
+
+<!-- wp:paragraph {"align":"center","style":{"color":{"text":"#666666"}}} -->
+<p class="has-text-align-center has-text-color" style="color:#666666"><em>Hai suggerimenti o hai trovato un bug? <a href="mailto:info@davidebertolino.it">Contattami!</a></em></p>
+<!-- /wp:paragraph -->

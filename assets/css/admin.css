@@ -1,0 +1,262 @@
+/* DB Login Guard — Admin Styles */
+
+.dblg-wrap .nav-tab-wrapper {
+    margin-bottom: 20px;
+}
+
+.dblg-tab-content {
+    max-width: 1100px;
+}
+
+/* Sections */
+.dblg-section {
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+    padding: 0 20px 15px;
+    margin-bottom: 15px;
+}
+
+.dblg-section h2 {
+    font-size: 14px;
+    font-weight: 600;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 8px;
+    margin-top: 15px;
+}
+
+.dblg-section .form-table th {
+    width: 200px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
+
+/* Dashboard */
+.dblg-status-bar {
+    padding: 12px 18px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dblg-status-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dblg-status-active {
+    background: #edf7ed;
+    color: #1a5e1f;
+    border: 1px solid #b7ddb8;
+}
+
+.dblg-status-active .dblg-status-dot {
+    background: #2e7d32;
+}
+
+.dblg-status-inactive {
+    background: #fff3e0;
+    color: #8a5700;
+    border: 1px solid #ffc88a;
+}
+
+.dblg-status-inactive .dblg-status-dot {
+    background: #e65100;
+}
+
+.dblg-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.dblg-stat-card {
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-radius: 6px;
+    padding: 20px;
+    text-align: center;
+}
+
+.dblg-stat-number {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1d2327;
+    line-height: 1;
+    margin-bottom: 6px;
+}
+
+.dblg-stat-label {
+    font-size: 12px;
+    color: #646970;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.dblg-info-box {
+    background: #f0f6fc;
+    border: 1px solid #c3d9ed;
+    border-radius: 4px;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+}
+
+.dblg-config-summary {
+    color: #646970;
+    font-style: italic;
+    margin-top: 15px;
+}
+
+/* Badges */
+.dblg-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.dblg-badge-red {
+    background: #fce4ec;
+    color: #c62828;
+}
+
+.dblg-badge-green {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.dblg-badge-orange {
+    background: #fff3e0;
+    color: #e65100;
+}
+
+.dblg-badge-yellow {
+    background: #fffde7;
+    color: #f57f17;
+}
+
+.dblg-badge-gray {
+    background: #f0f0f1;
+    color: #646970;
+}
+
+/* Filters */
+.dblg-filters {
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dblg-filters form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.dblg-filter-actions {
+    margin-left: auto;
+    display: flex;
+    gap: 5px;
+}
+
+.dblg-count {
+    color: #646970;
+    font-size: 13px;
+}
+
+/* Log table */
+.dblg-ua-cell {
+    font-size: 11px;
+    color: #646970;
+    word-break: break-all;
+}
+
+.dblg-expired-row {
+    opacity: 0.6;
+}
+
+/* Manual block form */
+.dblg-manual-block {
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+}
+
+.dblg-manual-block h3 {
+    margin-top: 0;
+    font-size: 13px;
+}
+
+.dblg-inline-form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Pagination */
+.tablenav {
+    margin-top: 10px;
+}
+
+/* Focus visible */
+.dblg-wrap a:focus,
+.dblg-wrap input:focus,
+.dblg-wrap select:focus,
+.dblg-wrap textarea:focus,
+.dblg-wrap button:focus {
+    outline: 3px solid #2271b1;
+    outline-offset: 1px;
+}
+
+/* Hardening status */
+.dblg-hardening-status {
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-radius: 6px;
+    padding: 15px 20px;
+    margin-top: 15px;
+}
+
+.dblg-hardening-status h3 {
+    margin-top: 0;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.dblg-hardening-status p {
+    margin-bottom: 0;
+}
+
+/* Responsive */
+@media (max-width: 782px) {
+    .dblg-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .dblg-filters form {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .dblg-filter-actions {
+        margin-left: 0;
+    }
+}
