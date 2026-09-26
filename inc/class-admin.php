@@ -66,9 +66,16 @@ class DBLG_Admin {
         }
 
         wp_enqueue_style(
+            'db-admin-ui',
+            DBLG_PLUGIN_URL . 'assets/css/db-admin-ui.css',
+            [],
+            DBLG_VERSION
+        );
+
+        wp_enqueue_style(
             'dblg-admin',
             DBLG_PLUGIN_URL . 'assets/css/admin.css',
-            [],
+            ['db-admin-ui'],
             DBLG_VERSION
         );
 

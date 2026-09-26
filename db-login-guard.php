@@ -3,7 +3,7 @@
  * Plugin Name: DB Login Guard
  * Plugin URI: https://github.com/dadebertolino/db-login-guard
  * Description: Protezione brute force per WordPress. Registra i tentativi di login, blocca gli IP dopo troppi errori, notifica via email. Niente servizi esterni, niente abbonamenti.
- * Version: 1.1.0
+ * Version: 1.2.0
  * Author: Davide Bertolino
  * Author URI: https://www.davidebertolino.it
  * License: GPL v2 or later
@@ -15,7 +15,18 @@
 
 if (!defined('ABSPATH')) exit;
 
-define('DBLG_VERSION', '1.1.0');
+/**
+ * Privacy capabilities (per references/PRIVACY-INTEGRATION.md):
+ *  - Personal data:        YES — IP (in chiaro), username digitato, user agent in wp_dblg_login_log;
+ *                          IP in wp_dblg_blocked_ips; retention via WP-Cron dblg_cleanup_logs (default 30 gg)
+ *  - Third-party scripts:  NO
+ *  - User consent:         NO  — base giuridica: legittimo interesse, sicurezza (art. 6.1.f GDPR)
+ *  - DSAR-aware:           YES — DBLG_Privacy_DSAR (export + anonimizzazione del log)
+ *  - Hub-aware:            YES — DBLG_Privacy_Declarations su dbph_processing_register (+ legacy dbseo_)
+ */
+define('DBLG_DSAR_AVAILABLE', true);
+
+define('DBLG_VERSION', '1.2.0');
 define('DBLG_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('DBLG_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('DBLG_PLUGIN_BASENAME', plugin_basename(__FILE__));
@@ -26,6 +37,14 @@ require_once DBLG_PLUGIN_DIR . 'inc/class-guard.php';
 require_once DBLG_PLUGIN_DIR . 'inc/class-admin.php';
 require_once DBLG_PLUGIN_DIR . 'inc/class-cron.php';
 require_once DBLG_PLUGIN_DIR . 'inc/class-hardening.php';
+require_once DBLG_PLUGIN_DIR . 'inc/class-privacy-declarations.php';
+require_once DBLG_PLUGIN_DIR . 'inc/class-privacy-dsar.php';
+
+// GitHub Auto-Updater (condiviso tra i plugin DB: guardia su class_exists)
+require_once DBLG_PLUGIN_DIR . 'inc/class-updater.php';
+if (class_exists('DB_GitHub_Updater')) {
+    new DB_GitHub_Updater(__FILE__, 'dadebertolino', 'db-login-guard');
+}
 
 /**
  * Main plugin class — singleton
@@ -47,6 +66,10 @@ final class DB_Login_Guard {
         DBLG_Guard::instance();
         DBLG_Cron::instance();
         DBLG_Hardening::instance();
+
+        // Integrazione ecosistema DB privacy (no-op se nessun plugin privacy è attivo)
+        DBLG_Privacy_Declarations::init();
+        DBLG_Privacy_DSAR::init();
 
         if (is_admin()) {
             DBLG_Admin::instance();
@@ -108,10 +131,8 @@ final class DB_Login_Guard {
             }
         }
 
-        // Schedule cron
-        if (!wp_next_scheduled('dblg_cleanup_logs')) {
-            wp_schedule_event(time(), 'daily', 'dblg_cleanup_logs');
-        }
+        // Schedule cron (idempotente, ripetuto anche su init da DBLG_Cron)
+        DBLG_Cron::maybe_schedule();
     }
 
     /* ─── Deactivation ─── */
